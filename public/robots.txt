@@ -1,0 +1,3 @@
+# RoveDrive is a static frontend demonstration. All routes are crawlable.
+User-agent: *
+Allow: /
