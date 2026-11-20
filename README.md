@@ -2,7 +2,7 @@
 
 **Drive Your Next Adventure.**
 
-RoveDrive is a responsive, portfolio-quality car rental front-end built with React, Vite and Tailwind CSS. It pairs a premium dark automotive design with a complete demonstration booking flow: fleet search and filtering, vehicle detail pages, date-based pricing, validated reservations, LocalStorage booking history and graceful empty/invalid states.
+RoveDrive is a responsive, portfolio-quality car rental frontend built with **React, Vite and Tailwind CSS**. It combines a premium dark automotive design with a complete demonstration booking experience, including fleet search and filtering, vehicle detail pages, date-based pricing, validated reservations and persistent booking history using LocalStorage.
 
 > **Demo notice:** RoveDrive is a fictional frontend demonstration. All vehicles, prices, availability, contact details and rental policies are sample content. No real reservation, payment or rental agreement is created, and no data is sent to a server.
 
@@ -10,78 +10,87 @@ RoveDrive is a responsive, portfolio-quality car rental front-end built with Rea
 
 ## Preview
 
-| Home | Fleet |
-| --- | --- |
+| Home                                                     | Fleet                                                       |
+| -------------------------------------------------------- | ----------------------------------------------------------- |
 | ![RoveDrive homepage](docs/screenshots/home-desktop.png) | ![RoveDrive fleet page](docs/screenshots/fleet-desktop.png) |
 
-| Vehicle details | Booking |
-| --- | --- |
+| Vehicle Details                                                    | Booking                                                         |
+| ------------------------------------------------------------------ | --------------------------------------------------------------- |
 | ![RoveDrive vehicle details](docs/screenshots/details-desktop.png) | ![RoveDrive booking form](docs/screenshots/booking-desktop.png) |
 
-| My bookings | Mobile |
-| --- | --- |
+| My Bookings                                                        | Mobile                                                   |
+| ------------------------------------------------------------------ | -------------------------------------------------------- |
 | ![RoveDrive saved bookings](docs/screenshots/bookings-desktop.png) | ![RoveDrive on mobile](docs/screenshots/home-mobile.png) |
 
 ---
 
 ## Highlights
 
-- **12 curated vehicles** across five categories and three body types, centralised in one data module.
-- **Combined fleet search**: keyword search, category, body type, maximum daily price, availability and sorting all work together.
-- **Homepage search handoff**: keyword and category selections feed the fleet page through URL query parameters.
-- **Complete vehicle detail pages**: specifications, equipment, sample rental terms, availability and related cars.
-- **Validated booking flow**: custom name, email and phone checks; local-date validation; return-after-pickup enforcement; unavailable-car guards.
-- **Live USD calculation** based on the selected dates and daily rate.
+- **12 sample vehicles** across five categories and three body types, managed in a centralized data module.
+- **Combined fleet search and filtering** by keyword, category, body type, maximum daily price and availability, with multiple sorting options.
+- **Homepage search handoff** that passes keyword and category selections to the fleet page through URL query parameters.
+- **Detailed vehicle pages** featuring specifications, equipment, sample rental terms, availability and related vehicles.
+- **Validated booking flow** with custom name, email and phone validation, date checks and unavailable-vehicle guards.
+- **Live USD price calculation** based on the selected rental dates and vehicle's daily rate.
 - **Unique booking references** with collision checks and duplicate-booking prevention.
-- **Persistent booking history** in LocalStorage (`rovedrive.bookings.v1`), including cross-tab synchronisation.
-- **Confirmation only for saved bookings**: the success page looks up a real saved reference through the URL.
-- **Privacy-conscious history**: phone numbers are not shown and email addresses are masked.
-- **Accessible interactions**: semantic landmarks, labelled fields, focus handling, focus-trapped confirmation dialogs, skip link and reduced-motion support.
-- **Responsive at 375 / 768 / 1024 / 1440 px** with no horizontal overflow.
+- **Persistent booking history** using LocalStorage (`rovedrive.bookings.v1`), including cross-tab synchronization.
+- **Verified confirmation pages** that display success only when the booking reference exists in saved data.
+- **Privacy-conscious booking history** that masks email addresses and does not display phone numbers.
+- **Accessible interactions** including semantic landmarks, labelled fields, focus handling, confirmation dialogs, a skip link and reduced-motion support.
+- **Responsive layouts** tested at 375, 768, 1024 and 1440 pixels.
 
 ---
 
-## Tech stack
+## Tech Stack
 
-| Area | Choice |
-| --- | --- |
-| UI | React 19 |
-| Build tool | Vite 8 |
-| Styling | Tailwind CSS 4 (`@tailwindcss/vite`) |
-| Routing | React Router 7 |
-| Icons | Lucide React |
-| State | React Context API + component state |
-| Persistence | Browser LocalStorage |
-| Fonts | Inter + Manrope (Google Fonts) |
+| Area             | Technology                          |
+| ---------------- | ----------------------------------- |
+| UI               | React 19                            |
+| Build Tool       | Vite 8                              |
+| Styling          | Tailwind CSS 4                      |
+| Routing          | React Router 7                      |
+| Icons            | Lucide React                        |
+| State Management | React Context API + Component State |
+| Persistence      | Browser LocalStorage                |
+| Fonts            | Inter + Manrope (Google Fonts)      |
 
-No backend, API, authentication, payment provider or database is involved.
+**No backend, API, authentication, payment provider or database is involved.**
 
 ---
 
-## Getting started
+## Getting Started
 
 ### Prerequisites
 
 - Node.js **20.19+** (or 22.12+)
 - npm 10+
 
-### Install and run
+### Installation
+
+Clone the repository and install dependencies:
 
 ```bash
+git clone https://github.com/maviatahir/rovedrive.git
+cd rovedrive
 npm install
+```
+
+### Run Development Server
+
+```bash
 npm run dev
 ```
 
 Open the local URL printed by Vite (usually `http://localhost:5173`).
 
-### Production build
+### Production Build
 
 ```bash
 npm run build
 npm run preview
 ```
 
-The production output is written to `dist/`.
+The production output is generated in the `dist/` directory.
 
 ### Lint
 
@@ -91,118 +100,124 @@ npm run lint
 
 ---
 
-## Routes
+## Application Routes
 
-| Path | Purpose |
-| --- | --- |
-| `/` | Homepage: hero search, company intro, featured cars, benefits, how it works, CTA |
-| `/fleet` | Full fleet with combined search, filters and sorting |
-| `/cars/:id` | Vehicle details, specifications, features, rental information and booking CTA |
-| `/booking/:id` | Reservation form, validation and live price summary |
-| `/booking-success?ref=RD-XXXXXX` | Confirmation for a booking that exists in LocalStorage |
-| `/my-bookings` | Saved booking history, empty state and confirmed clear-history action |
-| `*` | Custom 404 page |
+| Route                            | Description                                                                                    |
+| -------------------------------- | ---------------------------------------------------------------------------------------------- |
+| `/`                              | Homepage with hero search, company introduction, featured cars, benefits, how it works and CTA |
+| `/fleet`                         | Full vehicle fleet with combined search, filters and sorting                                   |
+| `/cars/:id`                      | Vehicle details, specifications, features, rental information and booking CTA                  |
+| `/booking/:id`                   | Reservation form, validation and live price summary                                            |
+| `/booking-success?ref=RD-XXXXXX` | Confirmation page for a booking saved in LocalStorage                                          |
+| `/my-bookings`                   | Saved booking history, empty state and clear-history action                                    |
+| `*`                              | Custom 404 page                                                                                |
 
 ---
 
-## Project structure
+## Project Structure
 
 ```text
 rovedrive/
-├─ public/
-│  ├─ images/
-│  │  ├─ cars/                 # 12 locally stored vehicle photos
-│  │  └─ hero.jpg              # Hero photograph
-│  ├─ favicon.svg
-│  └─ _redirects               # Netlify SPA fallback
-├─ src/
-│  ├─ components/
-│  │  ├─ booking/              # Form, live summary, saved booking card
-│  │  ├─ cars/                 # Cards, grid, filters, search, sort, image
-│  │  ├─ common/               # Button, modal, toast, empty state, heading
-│  │  └─ layout/               # Navbar, footer, route layout + scroll manager
-│  ├─ context/
-│  │  ├─ BookingProvider.jsx   # Bookings state, persistence, cross-tab sync
-│  │  └─ bookingContext.js     # Context object + useBookings hook
-│  ├─ data/
-│  │  ├─ cars.js               # Central inventory and helpers
-│  │  └─ site.js               # Fictional contact details and demo notice
-│  ├─ hooks/
-│  │  ├─ useBodyScrollLock.js
-│  │  ├─ useCarFilters.js      # Combined filtering, sorting and facets
-│  │  └─ useDocumentTitle.js
-│  ├─ pages/                   # One component per route
-│  ├─ utils/
-│  │  ├─ booking.js            # Validation, pricing, reference generation
-│  │  ├─ dates.js              # Local date-only helpers
-│  │  ├─ format.js             # Currency, date, mileage and masking helpers
-│  │  ├─ cn.js                 # Conditional class names
-│  │  └─ storage.js            # Safe LocalStorage reads/writes + validation
-│  ├─ App.jsx                  # Route table
-│  ├─ index.css                # Tailwind theme tokens and global styles
-│  └─ main.jsx                 # BrowserRouter + BookingProvider
-├─ index.html
-├─ package.json
-├─ package-lock.json
-├─ vite.config.js
-└─ vercel.json                 # Vercel SPA fallback
+├── docs/
+│   └── screenshots/              # Desktop and mobile screenshots
+├── public/
+│   ├── images/
+│   │   ├── cars/                 # 12 locally stored vehicle photos
+│   │   └── hero.jpg              # Homepage hero photograph
+│   ├── _redirects                # Netlify SPA fallback
+│   ├── favicon.svg
+│   ├── logo.svg
+│   └── robots.txt
+├── src/
+│   ├── components/
+│   │   ├── booking/              # Booking form, summary and booking card
+│   │   ├── cars/                 # Cards, grid, filters, search and sorting
+│   │   ├── common/               # Reusable UI components
+│   │   └── layout/               # Navbar, footer and route layout
+│   ├── context/
+│   │   ├── BookingProvider.jsx   # Booking state, persistence and tab sync
+│   │   └── bookingContext.js     # Context object and useBookings hook
+│   ├── data/
+│   │   ├── cars.js               # Central vehicle inventory and helpers
+│   │   └── site.js               # Demo content and contact details
+│   ├── hooks/
+│   │   ├── useBodyScrollLock.js
+│   │   ├── useCarFilters.js      # Filtering, sorting and facets
+│   │   └── useDocumentTitle.js
+│   ├── pages/                    # Route-level page components
+│   ├── utils/
+│   │   ├── booking.js            # Validation, pricing and references
+│   │   ├── dates.js              # Local date-only helpers
+│   │   ├── format.js             # Currency, date and masking helpers
+│   │   ├── cn.js                 # Conditional class names
+│   │   └── storage.js             # Safe LocalStorage operations
+│   ├── App.jsx                   # Application route table
+│   ├── index.css                 # Theme tokens and global styles
+│   └── main.jsx                  # BrowserRouter and BookingProvider
+├── .gitignore
+├── index.html
+├── package.json
+├── package-lock.json
+├── vite.config.js
+├── vercel.json                   # Vercel SPA fallback
+└── README.md
 ```
 
 ---
 
-## How it works
+## How It Works
 
-### Fleet filtering pipeline
+### Fleet Filtering
 
-`useCarFilters` owns the filter state and derives results in this order:
+The `useCarFilters` hook manages filter state and derives the displayed vehicle list through a combined filtering pipeline:
 
-1. **Search tokens** — every whitespace-separated token must appear in the car's brand, model, display name, category, body type or fuel type. This means `electric`, `SUV` and `hybrid` are useful searches too.
-2. **Category** — `Luxury`, `Everyday`, `Performance`, `Electric` or `Economy`.
-3. **Body type** — `Sedan`, `SUV` or `Sports`.
-4. **Maximum daily price** — values above the selected budget are removed.
-5. **Availability** — when enabled, only cars marked available remain.
-6. **Sorting** — recommended order, price ascending, price descending or name A–Z.
+1. **Search tokens** — every whitespace-separated token must match the vehicle's brand, model, display name, category, body type or fuel type.
+2. **Category** — filters by Luxury, Everyday, Performance, Electric or Economy.
+3. **Body type** — filters by Sedan, SUV or Sports.
+4. **Maximum daily price** — excludes vehicles above the selected budget.
+5. **Availability** — optionally shows only vehicles marked as available.
+6. **Sorting** — supports recommended order, price ascending, price descending and name A–Z.
 
-Filters are combined, not applied one at a time. The active-filter count excludes the search query; the “Clear all” action resets both.
+Filters work together rather than independently. The active-filter count excludes the search query, while the **Clear all** action resets both the query and filters.
 
-The homepage search form navigates to `/fleet?q=...&category=...`. The fleet page reads those parameters once as initial state, then keeps interaction local. This keeps the URL shareable without adding a two-way URL-sync layer.
+The homepage search navigates to `/fleet?q=...&category=...`. The fleet page reads these parameters as its initial filter state, then manages subsequent interactions locally.
 
-### Booking lifecycle
+### Booking Lifecycle
 
-1. The booking route checks the car ID and availability before rendering the form.
-2. Controlled inputs update a shared values object and the live summary.
-3. Submit runs custom validation for name, email, phone, pickup date, return date and vehicle state.
-4. Invalid fields receive inline messages and the first invalid field is focused.
-5. A duplicate check blocks a second booking with the same car, dates and email.
-6. A submission lock (`useRef` plus a disabled button) blocks double submits.
+1. The booking route checks whether the requested vehicle exists and is available.
+2. Controlled form inputs update the booking values and live price summary.
+3. Submission triggers custom validation for customer details, dates and vehicle state.
+4. Invalid fields display inline errors, and the first invalid field receives focus.
+5. A duplicate check blocks another booking with the same vehicle, dates and normalized email address.
+6. A submission lock prevents accidental double submissions.
 7. A unique `RD-XXXXXX` reference is generated and checked against saved references.
-8. A booking record with a small vehicle snapshot is written to LocalStorage **before** React state is updated.
-9. If the write fails, the form shows the error and **no success page is shown**.
-10. On success, the app navigates to `/booking-success?ref=...`.
-11. The success page looks up that reference in the saved booking list. Direct visits or stale references show a friendly fallback instead of a fake confirmation.
+8. The booking record is written to LocalStorage before React state is updated.
+9. If storage fails, an error is displayed and the success page is not shown.
+10. After a successful save, the app navigates to `/booking-success?ref=...`.
+11. The success page looks up the reference in saved bookings. Missing or unknown references display a fallback instead of a false confirmation.
 
-### Dates and pricing
+### Dates and Pricing
 
-`<input type="date">` produces `YYYY-MM-DD` strings. Passing those directly to `new Date()` can shift the day in some timezones, so `src/utils/dates.js` parses and compares dates as local calendar dates.
+The browser's date input returns `YYYY-MM-DD` strings. These are handled as local calendar dates to avoid timezone-related date shifts.
 
 - Pickup cannot be in the past.
 - Return must be at least one calendar day after pickup.
-- Rental days are shown in whole calendar days.
-- The total is `daily rate × rental days`, formatted as USD.
-- Changing pickup clears an existing return date if it becomes invalid.
+- Rental duration is calculated in whole calendar days.
+- Total price = daily rate × rental days.
+- Changing the pickup date clears an existing return date if it becomes invalid.
 
-### Persistence and privacy
+### Persistence and Privacy
 
-- Storage key: `rovedrive.bookings.v1`.
+- Storage key: `rovedrive.bookings.v1`
 - Bookings are stored newest first.
-- Every record is validated on read; malformed records are ignored.
-- Corrupt payloads are removed safely without breaking app startup.
-- A `storage` event listener keeps multiple tabs in sync.
-- Only the booking form and confirmation data are stored for the demo.
-- My Bookings displays the driver name and a masked email, and never displays the phone number.
-- Clearing history requires a focus-trapped confirmation dialog and cannot be undone.
+- Saved records are validated when read; malformed records are ignored.
+- Corrupt payloads are handled safely without breaking app startup.
+- A browser `storage` event listener synchronizes booking changes across tabs.
+- The booking form and confirmation data are stored locally for the demo.
+- My Bookings displays the driver's name and a masked email address, but does not display the phone number.
+- Clearing booking history requires confirmation and cannot be undone.
 
-### Example booking record
+### Example Booking Record
 
 ```json
 {
@@ -234,92 +249,108 @@ The homepage search form navigates to `/fleet?q=...&category=...`. The fleet pag
 
 ---
 
-## Validation rules
+## Validation Rules
 
-| Field | Rule |
-| --- | --- |
-| Full name | Required, 2–80 characters |
-| Email | Required, basic `name@example.com` pattern |
-| Phone | Required, 7–15 digits, limited to `+`, digits, spaces, brackets, dots and dashes |
-| Pickup date | Required, must be a real calendar date, cannot be in the past |
-| Return date | Required, must be a real calendar date, at least one calendar day after pickup |
-| Vehicle | Must exist and be marked available |
-| Duplicate | Same car, pickup date, return date and normalised email is blocked |
+| Field             | Validation                                                                     |
+| ----------------- | ------------------------------------------------------------------------------ |
+| Full Name         | Required, 2–80 characters                                                      |
+| Email             | Required, basic `name@example.com` pattern                                     |
+| Phone             | Required, 7–15 digits; supports `+`, digits, spaces, brackets, dots and dashes |
+| Pickup Date       | Required, valid calendar date and cannot be in the past                        |
+| Return Date       | Required, valid calendar date and at least one day after pickup                |
+| Vehicle           | Must exist and be marked as available                                          |
+| Duplicate Booking | Same vehicle, pickup date, return date and normalized email are blocked        |
 
-Validation is custom, not delegated to browser tooltips. The form uses `noValidate` so messages and focus behaviour stay consistent.
+Validation is handled by custom application logic rather than browser tooltips. The form uses `noValidate` to keep error messages and focus behaviour consistent.
 
 ---
 
-## Manual QA performed
+## Manual QA
 
-The following flows were exercised in the browser at **375, 768, 1024 and 1440 px**:
+The following application flows were manually tested at **375, 768, 1024 and 1440 pixels**:
 
-- All seven routes plus an unknown URL.
-- Homepage nav, hero CTAs, section links, featured cards and footer links.
-- Homepage search → fleet query/category handoff.
-- Keyword search, every category, every body type, price slider, availability toggle and all sort orders.
+- All seven routes and an unknown URL.
+- Homepage navigation, hero CTAs, section links, featured cards and footer links.
+- Homepage search to fleet query/category handoff.
+- Keyword search, categories, body types, price slider, availability toggle and sorting.
 - Combined filters, empty results, reset filters and active-filter count.
-- Valid, invalid and unavailable car IDs on details and booking routes.
-- Booking validation for blank fields, malformed email, short/long phone, past pickup and invalid return.
-- Live total updates and pickup-date/return-date clearing behaviour.
-- Successful booking, reference display, persistence after refresh, duplicate submission block and duplicate-record block.
-- Booking success with a valid reference, missing reference and unknown reference.
-- My Bookings empty state, populated state, masked contact details, clear-history dialog, cancel and confirm.
-- Mobile menu, Escape handling, skip link, keyboard focus, modal focus trap and reduced-motion preference.
+- Valid and invalid vehicle IDs on details and booking routes.
+- Booking validation for blank fields, malformed email, phone length, past pickup and invalid return dates.
+- Live price updates and pickup-date/return-date clearing behaviour.
+- Successful booking, reference display and persistence after refresh.
+- Duplicate submission and duplicate-record prevention.
+- Booking success with valid, missing and unknown references.
+- My Bookings empty and populated states, masked contact details and clear-history confirmation.
+- Mobile navigation, Escape handling, skip link, keyboard focus, modal focus trap and reduced-motion preference.
 - Production build, preview server and direct-route refresh with SPA fallback.
 
-See [`LEARNING_GUIDE.md`](LEARNING_GUIDE.md) for a step-by-step walkthrough of the architecture and implementation.
+See [LEARNING_GUIDE.md](LEARNING_GUIDE.md) for a step-by-step walkthrough of the architecture and implementation.
 
 ---
 
 ## Accessibility
 
-- Semantic `header`, `nav`, `main`, `section`, `article`, `footer`, headings and lists.
-- Skip-to-content link and visible `:focus-visible` rings.
-- Labelled form fields, inline errors connected with `aria-describedby`, and `aria-invalid`.
-- Error summary focus and first-invalid-field focus on submit.
-- Accessible confirmation dialog with `role="dialog"`, `aria-modal`, Escape close, focus trap and focus restoration.
+- Semantic `header`, `nav`, `main`, `section`, `article` and `footer` landmarks.
+- Skip-to-content link and visible `:focus-visible` indicators.
+- Labelled form fields with inline errors connected through `aria-describedby` and `aria-invalid`.
+- Error summary focus and first-invalid-field focus on submission.
+- Accessible confirmation dialog with `role="dialog"`, `aria-modal`, Escape handling, focus trapping and focus restoration.
 - Mobile navigation closes with Escape and restores focus to its trigger.
-- Toast notifications use `role="status"` / `role="alert"` and `aria-live`.
-- Status badges use text and colour, never colour alone.
-- Date inputs respect a dark colour scheme; reduced-motion preferences disable animations.
-- Images have descriptive alt text; decorative overlays are hidden from assistive technology.
+- Toast notifications use appropriate status and alert roles with live announcements.
+- Status indicators use text as well as colour.
+- Date inputs support a dark colour scheme, and reduced-motion preferences disable animations.
+- Images include descriptive alternative text; decorative overlays are hidden from assistive technology.
 
 ---
 
-## Known limitations
+## Known Limitations
 
-- **Frontend-only demo**: there is no backend, database, authentication, email delivery or payment processing.
-- **Availability is a single demo flag**, not date-specific inventory. The app does not check whether the same car is already booked for overlapping dates.
-- **Bookings are device-local**: clearing browser storage removes them, and they do not sync across browsers or devices.
-- **References are local**: a reference is unique within the current browser's saved history, not globally.
-- **Static sample data**: prices, specifications, contact details and policies are fictional.
-- **Stock imagery**: photos are illustrative and may not exactly match the listed trim or specification.
-- **No automated test suite** is included; testing was performed manually. The utilities are structured to be easy to unit test.
-- **Social links** point to the platforms' home pages and are labelled as demo links.
+- **Frontend-only demo:** No backend, database, authentication, email delivery or payment processing.
+- **Demo availability:** Vehicle availability is a single sample flag, not date-specific inventory. Overlapping bookings for the same vehicle are not checked.
+- **Device-local bookings:** Clearing browser storage removes saved bookings. They do not sync across browsers or devices.
+- **Local references:** Booking references are unique within the current browser's saved history, not globally.
+- **Static sample data:** Prices, specifications, contact details, policies and statistics are fictional.
+- **Illustrative photography:** Images may not exactly match the listed vehicle trim or specification.
+- **No automated test suite:** Testing was performed manually; the utility modules are structured to support future unit tests.
+- **Demo social links:** Social links point to the platforms' home pages.
 
 ---
 
 ## Deployment
 
-Because the app uses `BrowserRouter`, production hosting must serve `index.html` for unknown paths.
+RoveDrive uses `BrowserRouter`, so production hosting must serve `index.html` for application routes that do not correspond to physical files.
 
-- **Netlify**: `public/_redirects` is included and copied into the build.
-- **Vercel**: `vercel.json` contains a catch-all rewrite to `index.html`.
-- **Other static hosts**: configure an SPA fallback/rewrite to `/index.html`, then deploy the `dist/` directory.
+- **Netlify:** `public/_redirects` provides the SPA fallback and is copied into the production build.
+- **Vercel:** `vercel.json` contains a catch-all rewrite to `index.html`.
+- **Other static hosts:** Configure an SPA fallback/rewrite to `/index.html` and deploy the `dist/` directory.
+
+### Build Settings
+
+| Setting           | Value           |
+| ----------------- | --------------- |
+| Build command     | `npm run build` |
+| Publish directory | `dist`          |
 
 ---
 
-## Image credits and demo content
+## Image Credits and Demo Content
 
-Photography is sourced from [Pexels](https://www.pexels.com/) and stored locally in `public/images/` so the demo remains stable and offline-friendly. Images are used as illustrative placeholders under the [Pexels license](https://www.pexels.com/license/); they do not represent an endorsement by the photographers or vehicle manufacturers.
+Vehicle and hero photography is sourced from [Pexels](https://www.pexels.com/) and stored locally in `public/images/` so the demo remains stable and does not depend on remote image loading at runtime.
+
+Images are used as illustrative placeholders under the [Pexels License](https://www.pexels.com/license/). They do not represent an endorsement by the photographers or vehicle manufacturers.
 
 All vehicle names, prices, availability, contact details, policies and statistics in the UI are demonstration content. Brand and model names are trademarks of their respective owners.
 
 ---
 
-## GitHub description
+## GitHub Repository
 
-**Short:** Premium car rental front-end demo with React, Vite, Tailwind CSS, fleet filtering, validated bookings and LocalStorage history.
+[github.com/maviatahir/rovedrive](https://github.com/maviatahir/rovedrive)
 
-**Longer:** RoveDrive is a portfolio-quality car rental experience built with React and Tailwind CSS. It includes a searchable 12-car fleet, rich vehicle details, a validated booking simulation with live USD pricing, unique references, LocalStorage persistence, privacy-conscious booking history and a fully responsive dark automotive interface. No backend, accounts or payments required.
+**Repository description:**
+
+> A premium car rental frontend demo built with React, Vite and Tailwind CSS, featuring fleet filtering, validated bookings and LocalStorage history.
+
+---
+
+**RoveDrive — Drive Your Next Adventure.**
